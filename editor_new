@@ -1,0 +1,224 @@
+#!/usr/bin/python
+import customtkinter as ctk
+from customtkinter import BOTTOM, END, LEFT, TOP
+
+ctk.set_appearance_mode("dark")
+ctk.set_default_color_theme("dark-blue")
+
+mainWindow = ctk.CTk()
+mainWindow.minsize(1280, 1000)
+mainWindow.title("New Editor")
+mainWindow.geometry("1280x1000")
+
+path_input = ctk.CTkEntry(master=mainWindow)
+wittb_label = ctk.CTkLabel(master=mainWindow)
+whatsThat = ctk.CTkLabel(master=mainWindow)
+acceptButton = ctk.CTkButton(master=mainWindow)
+cancelButton = ctk.CTkButton(master=mainWindow)
+
+font_size = 14
+
+
+# COPIED
+
+def saveAsButtonFunc():
+    global wittb_label
+    global path_input
+    global whatsThat
+    global acceptButton
+    global cancelButton
+
+    wittb_label = ctk.CTkLabel(master=mainWindow)
+    whatsThat = ctk.CTkLabel(master=mainWindow)
+    path_input = ctk.CTkEntry(master=mainWindow)
+    acceptButton = ctk.CTkButton(master=mainWindow)
+    cancelButton = ctk.CTkButton(master=mainWindow)
+
+    whatsThat.destroy()
+    path_input.destroy()
+    wittb_label.destroy()
+    acceptButton.destroy()
+    cancelButton.destroy()
+
+    path_input = ctk.CTkEntry(master=mainWindow)
+    path_input.pack(side=BOTTOM)
+    path_input.place(
+        relx=1.0,
+        rely=1.0,
+        anchor="se"
+    )
+    whatsThat = ctk.CTkLabel(text="path + name", master=mainWindow)
+    whatsThat.pack(side=BOTTOM)
+    whatsThat.place(
+        relx=1.0,
+        rely=0.97,
+        anchor="se"
+    )
+
+    def acceptSaving():
+        global acceptButton
+        global path_input
+        global whatsThat
+        global cancelButton
+
+        file_pathetc = path_input.get()
+        try:
+            f = open(file_pathetc, "w")
+            f.write(text_box.get("1.0", END))
+
+        except FileNotFoundError:
+            print("error: there is no such directory")
+
+        acceptButton.destroy()
+        path_input.destroy()
+        whatsThat.destroy()
+        cancelButton.destroy()
+
+    acceptButton = ctk.CTkButton(height=1, width=8, text="accept", command=acceptSaving, master=mainWindow)
+    acceptButton.place(
+        relx=1.0,
+        rely=0.95,
+        anchor="se"
+
+    )
+
+    def cancelSaving():
+        global cancelButton
+        global path_input
+        global whatsThat
+        global cancelButton
+
+        cancelButton.destroy()
+        acceptButton.destroy()
+        path_input.destroy()
+        whatsThat.destroy()
+
+    cancelButton = ctk.CTkButton(height=1, width=8, text="cancel", command=cancelSaving, master=mainWindow)
+    cancelButton.place(
+        relx=0.925,
+        rely=0.95,
+        anchor="se"
+    )
+
+
+def OpenButtonFunc():
+    global wittb_label
+    global path_input
+    global whatsThat
+    global acceptButton
+    global cancelButton
+
+    wittb_label = ctk.CTkLabel(master=mainWindow)
+    whatsThat = ctk.CTkLabel(master=mainWindow)
+    path_input = ctk.CTkEntry(master=mainWindow)
+    acceptButton = ctk.CTkButton(master=mainWindow)
+    cancelButton = ctk.CTkButton(master=mainWindow)
+
+    whatsThat.destroy()
+    path_input.destroy()
+    wittb_label.destroy()
+    acceptButton.destroy()
+    cancelButton.destroy()
+
+    path_input = ctk.CTkEntry(master=mainWindow)
+    path_input.pack(side=BOTTOM)
+    path_input.place(
+        relx=1.0,
+        rely=1.0,
+        anchor="se"
+    )
+    whatsThat = ctk.CTkLabel(text="path + name", master=mainWindow)
+    whatsThat.pack(side=BOTTOM)
+    whatsThat.place(
+        relx=1.0,
+        rely=0.97,
+        anchor="se"
+    )
+
+    def acceptOpening():
+        global wittb_label
+        global whatsThat
+
+        file_pathetc = path_input.get()
+        path_input.destroy()
+
+        cancelOpening()
+
+        try:
+            the_file = open(file_pathetc)
+            text_box.delete("1.0", END)
+            text_box.insert("1.0", the_file.read())
+        except FileNotFoundError:
+            print("error: no such file or directory")
+
+    acceptButton = ctk.CTkButton(height=1, width=8, text="accept", command=acceptOpening, master=mainWindow)
+    acceptButton.place(
+        relx=1.0,
+        rely=0.95,
+        anchor="se"
+
+    )
+
+    def cancelOpening():
+        global wittb_label
+        global path_input
+        path_input = ctk.CTkEntry(master=mainWindow)
+        wittb_label = ctk.CTkLabel(master=mainWindow)
+
+        cancelButton.destroy()
+        acceptButton.destroy()
+        path_input.destroy()
+        wittb_label.destroy()
+        whatsThat.destroy()
+
+    cancelButton = ctk.CTkButton(height=1, width=8, text="cancel", command=cancelOpening, master=mainWindow)
+    cancelButton.place(
+        relx=0.925,
+        rely=0.95,
+        anchor="se"
+    )
+
+
+def font_size_up():
+    global font_size
+    font_size = font_size + 1
+    text_box.configure(font=("TkDefaultFont", font_size))
+
+
+def font_size_down():
+    global font_size
+    if font_size > 0:
+        font_size = font_size - 1
+        text_box.configure(font=("TkDefaultFont", font_size))
+
+
+def exit_app():
+    exit()
+
+
+def clear():
+    text_box.delete("1.0", END)
+
+
+text_box = ctk.CTkTextbox(master=mainWindow, width=1200, height=900, font=("TkDefaultFont", font_size))
+text_box.pack(side=TOP, expand=True)
+
+exit_button = ctk.CTkButton(master=mainWindow, text="exit", command=exit_app)
+exit_button.pack(side=LEFT)
+
+save_button = ctk.CTkButton(master=mainWindow, text="save", command=saveAsButtonFunc)
+save_button.pack(side=LEFT)
+
+open_button = ctk.CTkButton(master=mainWindow, text="open", command=OpenButtonFunc)
+open_button.pack(side=LEFT)
+
+clear_button = ctk.CTkButton(master=mainWindow, text="clear", command=clear)
+clear_button.pack(side=LEFT)
+
+font_size_up_button = ctk.CTkButton(master=mainWindow, text="font size up", command=font_size_up)
+font_size_up_button.pack(side=LEFT)
+
+font_size_down_button = ctk.CTkButton(master=mainWindow, text="font size down", command=font_size_down)
+font_size_down_button.pack(side=LEFT)
+
+mainWindow.mainloop()
