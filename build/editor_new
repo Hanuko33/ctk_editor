@@ -17,8 +17,8 @@ font_size = 14
 def save_func():
     filename = filedialog.asksaveasfilename(initialdir="/",
                                             title="Select a File",
-                                            filetypes=(("Text files", "*.txt"),
-                                                       ("all files", "*")))
+                                            filetypes=(("all files", "*"),
+                                                       ("txt files", "*.txt")))
     if messagebox.askyesno("Are you sure", "do you want to proceed"):
         try:
             f = open(filename, "w")
@@ -32,8 +32,8 @@ def save_func():
 def open_func():
     filename = filedialog.askopenfilename(initialdir="/",
                                           title="Select a File",
-                                          filetypes=(("Text files", "*.txt"),
-                                                     ("all files", "*"),
+                                          filetypes=(("all files", "*"),
+                                                     ("txt files", "*.txt"),
                                                      ))
     if messagebox.askyesno("Are you sure", "do you want to proceed"):
         try:

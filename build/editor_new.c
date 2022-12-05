@@ -1292,7 +1292,7 @@ static PyObject *__pyx_builtin_exit;
 static const char __pyx_k_[] = "/";
 static const char __pyx_k_f[] = "f";
 static const char __pyx_k_w[] = "w";
-static const char __pyx_k__3[] = "*";
+static const char __pyx_k__2[] = "*";
 static const char __pyx_k_1_0[] = "1.0";
 static const char __pyx_k_CTk[] = "CTk";
 static const char __pyx_k_END[] = "END";
@@ -1343,9 +1343,9 @@ static const char __pyx_k_font_size[] = "font_size";
 static const char __pyx_k_open_func[] = "open_func";
 static const char __pyx_k_save_func[] = "save_func";
 static const char __pyx_k_showerror[] = "showerror";
+static const char __pyx_k_txt_files[] = "txt files";
 static const char __pyx_k_CTkTextbox[] = "CTkTextbox";
 static const char __pyx_k_New_Editor[] = "New Editor";
-static const char __pyx_k_Text_files[] = "Text files";
 static const char __pyx_k_editor_new[] = "editor_new";
 static const char __pyx_k_filedialog[] = "filedialog";
 static const char __pyx_k_initialdir[] = "initialdir";
@@ -1390,9 +1390,8 @@ static PyObject *__pyx_kp_s_New_Editor;
 static PyObject *__pyx_n_s_PermissionError;
 static PyObject *__pyx_kp_s_Select_a_File;
 static PyObject *__pyx_n_s_TOP;
-static PyObject *__pyx_kp_s_Text_files;
 static PyObject *__pyx_n_s_TkDefaultFont;
-static PyObject *__pyx_kp_s__3;
+static PyObject *__pyx_kp_s__2;
 static PyObject *__pyx_kp_s_all_files;
 static PyObject *__pyx_n_s_askopenfilename;
 static PyObject *__pyx_n_s_asksaveasfilename;
@@ -1458,6 +1457,7 @@ static PyObject *__pyx_n_s_text_box;
 static PyObject *__pyx_n_s_title;
 static PyObject *__pyx_n_s_tkinter;
 static PyObject *__pyx_kp_s_txt;
+static PyObject *__pyx_kp_s_txt_files;
 static PyObject *__pyx_n_s_w;
 static PyObject *__pyx_n_s_width;
 static PyObject *__pyx_n_s_write;
@@ -1474,7 +1474,7 @@ static PyObject *__pyx_int_900;
 static PyObject *__pyx_int_1000;
 static PyObject *__pyx_int_1200;
 static PyObject *__pyx_int_1280;
-static PyObject *__pyx_tuple__2;
+static PyObject *__pyx_tuple__3;
 static PyObject *__pyx_tuple__4;
 static PyObject *__pyx_tuple__5;
 static PyObject *__pyx_tuple__6;
@@ -1544,7 +1544,7 @@ static PyObject *__pyx_pf_10editor_new_save_func(CYTHON_UNUSED PyObject *__pyx_s
  * def save_func():
  *     filename = filedialog.asksaveasfilename(initialdir="/",             # <<<<<<<<<<<<<<
  *                                             title="Select a File",
- *                                             filetypes=(("Text files", "*.txt"),
+ *                                             filetypes=(("all files", "*"),
  */
   __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_filedialog); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 18, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -1559,8 +1559,8 @@ static PyObject *__pyx_pf_10editor_new_save_func(CYTHON_UNUSED PyObject *__pyx_s
   /* "editor_new":20
  *     filename = filedialog.asksaveasfilename(initialdir="/",
  *                                             title="Select a File",
- *                                             filetypes=(("Text files", "*.txt"),             # <<<<<<<<<<<<<<
- *                                                        ("all files", "*")))
+ *                                             filetypes=(("all files", "*"),             # <<<<<<<<<<<<<<
+ *                                                        ("txt files", "*.txt")))
  *     if messagebox.askyesno("Are you sure", "do you want to proceed"):
  */
   if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_filetypes, __pyx_tuple__5) < 0) __PYX_ERR(0, 18, __pyx_L1_error)
@@ -1570,7 +1570,7 @@ static PyObject *__pyx_pf_10editor_new_save_func(CYTHON_UNUSED PyObject *__pyx_s
  * def save_func():
  *     filename = filedialog.asksaveasfilename(initialdir="/",             # <<<<<<<<<<<<<<
  *                                             title="Select a File",
- *                                             filetypes=(("Text files", "*.txt"),
+ *                                             filetypes=(("all files", "*"),
  */
   __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_empty_tuple, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 18, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
@@ -1580,8 +1580,8 @@ static PyObject *__pyx_pf_10editor_new_save_func(CYTHON_UNUSED PyObject *__pyx_s
   __pyx_t_3 = 0;
 
   /* "editor_new":22
- *                                             filetypes=(("Text files", "*.txt"),
- *                                                        ("all files", "*")))
+ *                                             filetypes=(("all files", "*"),
+ *                                                        ("txt files", "*.txt")))
  *     if messagebox.askyesno("Are you sure", "do you want to proceed"):             # <<<<<<<<<<<<<<
  *         try:
  *             f = open(filename, "w")
@@ -1599,7 +1599,7 @@ static PyObject *__pyx_pf_10editor_new_save_func(CYTHON_UNUSED PyObject *__pyx_s
   if (__pyx_t_4) {
 
     /* "editor_new":23
- *                                                        ("all files", "*")))
+ *                                                        ("txt files", "*.txt")))
  *     if messagebox.askyesno("Are you sure", "do you want to proceed"):
  *         try:             # <<<<<<<<<<<<<<
  *             f = open(filename, "w")
@@ -1717,7 +1717,7 @@ static PyObject *__pyx_pf_10editor_new_save_func(CYTHON_UNUSED PyObject *__pyx_s
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
         /* "editor_new":23
- *                                                        ("all files", "*")))
+ *                                                        ("txt files", "*.txt")))
  *     if messagebox.askyesno("Are you sure", "do you want to proceed"):
  *         try:             # <<<<<<<<<<<<<<
  *             f = open(filename, "w")
@@ -1826,7 +1826,7 @@ static PyObject *__pyx_pf_10editor_new_save_func(CYTHON_UNUSED PyObject *__pyx_s
       __pyx_L6_except_error:;
 
       /* "editor_new":23
- *                                                        ("all files", "*")))
+ *                                                        ("txt files", "*.txt")))
  *     if messagebox.askyesno("Are you sure", "do you want to proceed"):
  *         try:             # <<<<<<<<<<<<<<
  *             f = open(filename, "w")
@@ -1846,8 +1846,8 @@ static PyObject *__pyx_pf_10editor_new_save_func(CYTHON_UNUSED PyObject *__pyx_s
     }
 
     /* "editor_new":22
- *                                             filetypes=(("Text files", "*.txt"),
- *                                                        ("all files", "*")))
+ *                                             filetypes=(("all files", "*"),
+ *                                                        ("txt files", "*.txt")))
  *     if messagebox.askyesno("Are you sure", "do you want to proceed"):             # <<<<<<<<<<<<<<
  *         try:
  *             f = open(filename, "w")
@@ -1930,7 +1930,7 @@ static PyObject *__pyx_pf_10editor_new_2open_func(CYTHON_UNUSED PyObject *__pyx_
  * def open_func():
  *     filename = filedialog.askopenfilename(initialdir="/",             # <<<<<<<<<<<<<<
  *                                           title="Select a File",
- *                                           filetypes=(("Text files", "*.txt"),
+ *                                           filetypes=(("all files", "*"),
  */
   __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_filedialog); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 33, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -1945,8 +1945,8 @@ static PyObject *__pyx_pf_10editor_new_2open_func(CYTHON_UNUSED PyObject *__pyx_
   /* "editor_new":35
  *     filename = filedialog.askopenfilename(initialdir="/",
  *                                           title="Select a File",
- *                                           filetypes=(("Text files", "*.txt"),             # <<<<<<<<<<<<<<
- *                                                      ("all files", "*"),
+ *                                           filetypes=(("all files", "*"),             # <<<<<<<<<<<<<<
+ *                                                      ("txt files", "*.txt"),
  *                                                      ))
  */
   if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_filetypes, __pyx_tuple__5) < 0) __PYX_ERR(0, 33, __pyx_L1_error)
@@ -1956,7 +1956,7 @@ static PyObject *__pyx_pf_10editor_new_2open_func(CYTHON_UNUSED PyObject *__pyx_
  * def open_func():
  *     filename = filedialog.askopenfilename(initialdir="/",             # <<<<<<<<<<<<<<
  *                                           title="Select a File",
- *                                           filetypes=(("Text files", "*.txt"),
+ *                                           filetypes=(("all files", "*"),
  */
   __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_empty_tuple, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 33, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
@@ -1966,7 +1966,7 @@ static PyObject *__pyx_pf_10editor_new_2open_func(CYTHON_UNUSED PyObject *__pyx_
   __pyx_t_3 = 0;
 
   /* "editor_new":38
- *                                                      ("all files", "*"),
+ *                                                      ("txt files", "*.txt"),
  *                                                      ))
  *     if messagebox.askyesno("Are you sure", "do you want to proceed"):             # <<<<<<<<<<<<<<
  *         try:
@@ -2281,7 +2281,7 @@ static PyObject *__pyx_pf_10editor_new_2open_func(CYTHON_UNUSED PyObject *__pyx_
     }
 
     /* "editor_new":38
- *                                                      ("all files", "*"),
+ *                                                      ("txt files", "*.txt"),
  *                                                      ))
  *     if messagebox.askyesno("Are you sure", "do you want to proceed"):             # <<<<<<<<<<<<<<
  *         try:
@@ -2799,9 +2799,8 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_PermissionError, __pyx_k_PermissionError, sizeof(__pyx_k_PermissionError), 0, 0, 1, 1},
   {&__pyx_kp_s_Select_a_File, __pyx_k_Select_a_File, sizeof(__pyx_k_Select_a_File), 0, 0, 1, 0},
   {&__pyx_n_s_TOP, __pyx_k_TOP, sizeof(__pyx_k_TOP), 0, 0, 1, 1},
-  {&__pyx_kp_s_Text_files, __pyx_k_Text_files, sizeof(__pyx_k_Text_files), 0, 0, 1, 0},
   {&__pyx_n_s_TkDefaultFont, __pyx_k_TkDefaultFont, sizeof(__pyx_k_TkDefaultFont), 0, 0, 1, 1},
-  {&__pyx_kp_s__3, __pyx_k__3, sizeof(__pyx_k__3), 0, 0, 1, 0},
+  {&__pyx_kp_s__2, __pyx_k__2, sizeof(__pyx_k__2), 0, 0, 1, 0},
   {&__pyx_kp_s_all_files, __pyx_k_all_files, sizeof(__pyx_k_all_files), 0, 0, 1, 0},
   {&__pyx_n_s_askopenfilename, __pyx_k_askopenfilename, sizeof(__pyx_k_askopenfilename), 0, 0, 1, 1},
   {&__pyx_n_s_asksaveasfilename, __pyx_k_asksaveasfilename, sizeof(__pyx_k_asksaveasfilename), 0, 0, 1, 1},
@@ -2867,6 +2866,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_title, __pyx_k_title, sizeof(__pyx_k_title), 0, 0, 1, 1},
   {&__pyx_n_s_tkinter, __pyx_k_tkinter, sizeof(__pyx_k_tkinter), 0, 0, 1, 1},
   {&__pyx_kp_s_txt, __pyx_k_txt, sizeof(__pyx_k_txt), 0, 0, 1, 0},
+  {&__pyx_kp_s_txt_files, __pyx_k_txt_files, sizeof(__pyx_k_txt_files), 0, 0, 1, 0},
   {&__pyx_n_s_w, __pyx_k_w, sizeof(__pyx_k_w), 0, 0, 1, 1},
   {&__pyx_n_s_width, __pyx_k_width, sizeof(__pyx_k_width), 0, 0, 1, 1},
   {&__pyx_n_s_write, __pyx_k_write, sizeof(__pyx_k_write), 0, 0, 1, 1},
@@ -2887,39 +2887,39 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   /* "editor_new":20
  *     filename = filedialog.asksaveasfilename(initialdir="/",
  *                                             title="Select a File",
- *                                             filetypes=(("Text files", "*.txt"),             # <<<<<<<<<<<<<<
- *                                                        ("all files", "*")))
+ *                                             filetypes=(("all files", "*"),             # <<<<<<<<<<<<<<
+ *                                                        ("txt files", "*.txt")))
  *     if messagebox.askyesno("Are you sure", "do you want to proceed"):
  */
-  __pyx_tuple__2 = PyTuple_Pack(2, __pyx_kp_s_Text_files, __pyx_kp_s_txt); if (unlikely(!__pyx_tuple__2)) __PYX_ERR(0, 20, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__2);
-  __Pyx_GIVEREF(__pyx_tuple__2);
+  __pyx_tuple__3 = PyTuple_Pack(2, __pyx_kp_s_all_files, __pyx_kp_s__2); if (unlikely(!__pyx_tuple__3)) __PYX_ERR(0, 20, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__3);
+  __Pyx_GIVEREF(__pyx_tuple__3);
 
   /* "editor_new":21
  *                                             title="Select a File",
- *                                             filetypes=(("Text files", "*.txt"),
- *                                                        ("all files", "*")))             # <<<<<<<<<<<<<<
+ *                                             filetypes=(("all files", "*"),
+ *                                                        ("txt files", "*.txt")))             # <<<<<<<<<<<<<<
  *     if messagebox.askyesno("Are you sure", "do you want to proceed"):
  *         try:
  */
-  __pyx_tuple__4 = PyTuple_Pack(2, __pyx_kp_s_all_files, __pyx_kp_s__3); if (unlikely(!__pyx_tuple__4)) __PYX_ERR(0, 21, __pyx_L1_error)
+  __pyx_tuple__4 = PyTuple_Pack(2, __pyx_kp_s_txt_files, __pyx_kp_s_txt); if (unlikely(!__pyx_tuple__4)) __PYX_ERR(0, 21, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__4);
   __Pyx_GIVEREF(__pyx_tuple__4);
 
   /* "editor_new":20
  *     filename = filedialog.asksaveasfilename(initialdir="/",
  *                                             title="Select a File",
- *                                             filetypes=(("Text files", "*.txt"),             # <<<<<<<<<<<<<<
- *                                                        ("all files", "*")))
+ *                                             filetypes=(("all files", "*"),             # <<<<<<<<<<<<<<
+ *                                                        ("txt files", "*.txt")))
  *     if messagebox.askyesno("Are you sure", "do you want to proceed"):
  */
-  __pyx_tuple__5 = PyTuple_Pack(2, __pyx_tuple__2, __pyx_tuple__4); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(0, 20, __pyx_L1_error)
+  __pyx_tuple__5 = PyTuple_Pack(2, __pyx_tuple__3, __pyx_tuple__4); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(0, 20, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__5);
   __Pyx_GIVEREF(__pyx_tuple__5);
 
   /* "editor_new":22
- *                                             filetypes=(("Text files", "*.txt"),
- *                                                        ("all files", "*")))
+ *                                             filetypes=(("all files", "*"),
+ *                                                        ("txt files", "*.txt")))
  *     if messagebox.askyesno("Are you sure", "do you want to proceed"):             # <<<<<<<<<<<<<<
  *         try:
  *             f = open(filename, "w")
