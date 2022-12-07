@@ -10,13 +10,26 @@ mainWindow = ctk.CTk()
 mainWindow.minsize(1280, 1000)
 mainWindow.title("New Editor")
 mainWindow.geometry("1280x1000")
+filename = ""
+tmp = open("PREF")
+preffered_dir = tmp.readline()
+del tmp
 
 font_size = 14
 
 
-def save_func():
-    filename = filedialog.asksaveasfilename(initialdir="/",
-                                            title="Select a File",
+def change_pref_dir():
+    set_pref_dir = filedialog.askdirectory(initialdir=preffered_dir,
+                                           title="change preffered directory",)
+    f = open("PREF", "w")
+    f.write(set_pref_dir)
+
+
+def save_as_func():
+    global preffered_dir
+    global filename
+    filename = filedialog.asksaveasfilename(initialdir=preffered_dir,
+                                            title="save as",
                                             filetypes=(("all files", "*"),
                                                        ("txt files", "*.txt")))
     if messagebox.askyesno("Are you sure", "do you want to proceed"):
@@ -29,9 +42,24 @@ def save_func():
             messagebox.showerror("ERROR", "permission denied")
 
 
+def save_func():
+    if filename != "":
+        try:
+            f = open(filename, "w")
+            f.write(text_box.get("1.0", END))
+        except FileNotFoundError:
+            messagebox.showerror("ERROR", "file not found")
+        except PermissionError:
+            messagebox.showerror("ERROR", "premission denied")
+    else:
+        save_as_func()
+
+
 def open_func():
-    filename = filedialog.askopenfilename(initialdir="/",
-                                          title="Select a File",
+    global filename
+    global preffered_dir
+    filename = filedialog.askopenfilename(initialdir=preffered_dir,
+                                          title="open",
                                           filetypes=(("all files", "*"),
                                                      ("txt files", "*.txt"),
                                                      ))
@@ -44,6 +72,8 @@ def open_func():
             messagebox.showerror("ERROR", "file not found")
         except PermissionError:
             messagebox.showerror("ERROR", "permission denied")
+        except TypeError:
+            pass
 
 
 def font_size_up():
@@ -73,6 +103,9 @@ text_box.pack(side=TOP, expand=True)
 exit_button = ctk.CTkButton(master=mainWindow, text="exit", command=exit_app)
 exit_button.pack(side=LEFT)
 
+save_as_button = ctk.CTkButton(master=mainWindow, text="save as", command=save_as_func)
+save_as_button.pack(side=LEFT)
+
 save_button = ctk.CTkButton(master=mainWindow, text="save", command=save_func)
 save_button.pack(side=LEFT)
 
@@ -87,5 +120,8 @@ font_size_up_button.pack(side=LEFT)
 
 font_size_down_button = ctk.CTkButton(master=mainWindow, text="font size down", command=font_size_down)
 font_size_down_button.pack(side=LEFT)
+
+add_pref_dir_button = ctk.CTkButton(master=mainWindow, text="set preffered directory", command=change_pref_dir)
+add_pref_dir_button.pack(side=LEFT)
 
 mainWindow.mainloop()
