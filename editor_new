@@ -1,7 +1,9 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 import customtkinter as ctk
 from customtkinter import END, LEFT, TOP
 from tkinter import messagebox, filedialog
+import os
+import sys
 
 ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("dark-blue")
@@ -10,8 +12,11 @@ mainWindow = ctk.CTk()
 mainWindow.minsize(1280, 1000)
 mainWindow.title("New Editor")
 mainWindow.geometry("1280x1000")
-filename = ""
-tmp = open("PREF")
+
+working_directory = os.getcwd()
+path_of_app = os.path.realpath(__file__)
+path_of_app = path_of_app[:len(path_of_app) - 10]
+tmp = open(path_of_app + "PREF")
 preffered_dir = tmp.readline()
 del tmp
 
@@ -21,7 +26,7 @@ font_size = 14
 def change_pref_dir():
     set_pref_dir = filedialog.askdirectory(initialdir=preffered_dir,
                                            title="change preffered directory",)
-    f = open("PREF", "w")
+    f = open(path_of_app + "PREF", "w")
     f.write(set_pref_dir)
 
 
@@ -50,30 +55,45 @@ def save_func():
         except FileNotFoundError:
             messagebox.showerror("ERROR", "file not found")
         except PermissionError:
-            messagebox.showerror("ERROR", "premission denied")
+            messagebox.showerror("ERROR", "permission denied")
     else:
         save_as_func()
 
 
-def open_func():
-    global filename
-    global preffered_dir
-    filename = filedialog.askopenfilename(initialdir=preffered_dir,
-                                          title="open",
-                                          filetypes=(("all files", "*"),
-                                                     ("txt files", "*.txt"),
-                                                     ))
-    if messagebox.askyesno("Are you sure", "do you want to proceed"):
+def open_func(path):
+    if (path):
         try:
-            f = open(filename)
+            f = open(path)
             text_box.delete("1.0", END)
             text_box.insert("1.0", f.read())
+            del f
         except FileNotFoundError:
             messagebox.showerror("ERROR", "file not found")
         except PermissionError:
             messagebox.showerror("ERROR", "permission denied")
         except TypeError:
             pass
+
+    if (path == ""):
+        global filename
+        global preffered_dir
+        filename = filedialog.askopenfilename(initialdir=preffered_dir,
+                                              title="open",
+                                              filetypes=(("all files", "*"),
+                                                         ("txt files", "*.txt"),
+                                                    )
+                                            ) 
+        if messagebox.askyesno("Are you sure", "do you want to proceed"):
+            try:
+                f = open(filename)
+                text_box.delete("1.0", END)
+                text_box.insert("1.0", f.read())
+            except FileNotFoundError:
+                messagebox.showerror("ERROR", "file not found")
+            except PermissionError:
+                messagebox.showerror("ERROR", "permission denied")
+            except TypeError:
+                pass
 
 
 def font_size_up():
@@ -100,6 +120,13 @@ def clear():
 text_box = ctk.CTkTextbox(master=mainWindow, width=1200, height=900, font=("TkDefaultFont", font_size))
 text_box.pack(side=TOP, expand=True)
 
+if len(sys.argv) > 1:
+    if sys.argv[1][0] == "/":
+        open_func(sys.argv[1])
+    else:
+        open_func(working_directory + "/" + sys.argv[1])
+
+
 exit_button = ctk.CTkButton(master=mainWindow, text="exit", command=exit_app)
 exit_button.pack(side=LEFT)
 
@@ -109,7 +136,7 @@ save_as_button.pack(side=LEFT)
 save_button = ctk.CTkButton(master=mainWindow, text="save", command=save_func)
 save_button.pack(side=LEFT)
 
-open_button = ctk.CTkButton(master=mainWindow, text="open", command=open_func)
+open_button = ctk.CTkButton(master=mainWindow, text="open", command=lambda: open_func(""))
 open_button.pack(side=LEFT)
 
 clear_button = ctk.CTkButton(master=mainWindow, text="clear", command=clear)
